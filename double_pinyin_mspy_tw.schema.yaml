@@ -16,19 +16,19 @@ schema:
 switches:
   - name: ascii_mode
     reset: 0
-    states: [ 中文, 西文 ]
+    states: [中文, 西文]
   - name: full_shape
-    states: [ 半型, 全型 ]
-  - options:        # 使用 options 列表
-      - zh_hant     # 繁體
-      - zh_hans     # 簡體
-      - zh_hant_tw  # 臺灣字形
+    states: [半型, 全型]
+  - options: # 使用 options 列表
+      - zh_hant_tw # 臺灣字形
+      - zh_hant # 繁體
+      - zh_hans # 簡體
     states:
-      - 傳統漢字
+      - 臺灣正體
+      - 繁體中文
       - 简体中文
-      - 臺灣字形
   - name: ascii_punct
-    states: [ 。，, ．， ]
+    states: [。，, ．，]
 
 engine:
   processors:
@@ -51,8 +51,8 @@ engine:
     - reverse_lookup_translator
     - script_translator
   filters:
-    - simplifier@zh_hans          # 新增，用於簡體轉換
-    - simplifier@zh_hant_tw       #用於臺灣字形轉換
+    - simplifier@zh_hans # 新增，用於簡體轉換
+    - simplifier@zh_hant_tw #用於臺灣字形轉換
     - uniquifier
 
 speller:
@@ -150,13 +150,13 @@ zh_hans:
   option_name: zh_hans
   opencc_config: t2s.json
   tips: all
-  excluded_types: [ reverse_lookup ]
+  excluded_types: [reverse_lookup]
 
 zh_hant_tw:
   option_name: zh_hant_tw
   opencc_config: t2tw.json
   tips: none
-  excluded_types: [ reverse_lookup ]
+  excluded_types: [reverse_lookup]
 
 punctuator:
   import_preset: default
